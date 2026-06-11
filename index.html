@@ -1,0 +1,1566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sure Success Test Series</title>
+  <style>
+    :root {
+      --bg: #f6f7f2;
+      --surface: #ffffff;
+      --ink: #18202a;
+      --muted: #657080;
+      --line: #dfe3dc;
+      --brand: #116466;
+      --brand-dark: #0b4547;
+      --accent: #d29b22;
+      --danger: #b42318;
+      --ok: #147a4b;
+      --shadow: 0 18px 50px rgba(24, 32, 42, .12);
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .app-shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 210px;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+      letter-spacing: 0;
+      background: linear-gradient(135deg, var(--brand), #263d58);
+      box-shadow: 0 8px 20px rgba(17, 100, 102, .24);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 0;
+      margin: 0;
+    }
+
+    .brand-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .icon-btn,
+    .btn {
+      min-height: 40px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 14px;
+      font-weight: 800;
+      color: var(--ink);
+      background: #eef2ed;
+      border: 1px solid transparent;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+      white-space: nowrap;
+    }
+
+    .icon-btn {
+      width: 42px;
+      padding: 0;
+    }
+
+    .btn:hover,
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(24, 32, 42, .1);
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: var(--brand);
+    }
+
+    .btn.dark {
+      color: #fff;
+      background: #18202a;
+    }
+
+    .btn.warn {
+      color: #281d05;
+      background: #f4ce73;
+    }
+
+    .btn.danger {
+      color: #fff;
+      background: var(--danger);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border-color: var(--line);
+    }
+
+    .page {
+      max-width: 1180px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 18px 48px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+      gap: 24px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+
+    .hero-copy {
+      background: #102f33;
+      color: #fff;
+      border-radius: 8px;
+      padding: clamp(24px, 5vw, 52px);
+      box-shadow: var(--shadow);
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-copy::after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -110px auto;
+      width: 240px;
+      height: 240px;
+      background: rgba(210, 155, 34, .28);
+      transform: rotate(28deg);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #f4ce73;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 56px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      max-width: 760px;
+    }
+
+    .hero-copy p {
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, .82);
+      max-width: 640px;
+      font-size: 17px;
+    }
+
+    .hero-panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .metric {
+      background: #f7f8f5;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .notice {
+      border-radius: 8px;
+      border: 1px solid #efdcae;
+      background: #fff8e5;
+      color: #4f3900;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin: 26px 0 16px;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .pill.active {
+      background: var(--brand);
+      color: #fff;
+      border-color: var(--brand);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(24, 32, 42, .08);
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+    }
+
+    .test-image {
+      height: 152px;
+      background: linear-gradient(135deg, #e5f1ee, #fff4d6);
+      display: grid;
+      place-items: center;
+      color: rgba(24, 32, 42, .42);
+      font-weight: 900;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .test-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border-radius: 8px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, .92);
+      font-weight: 900;
+      font-size: 12px;
+      color: var(--brand-dark);
+      border: 1px solid rgba(255, 255, 255, .6);
+    }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .chip {
+      border-radius: 8px;
+      background: #f0f3ef;
+      color: #374151;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .notes-wrap {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .note {
+      padding: 16px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px rgba(24, 32, 42, .06);
+    }
+
+    .note h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+      white-space: pre-wrap;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: rgba(10, 16, 22, .58);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .dialog {
+      width: min(980px, 100%);
+      max-height: min(90vh, 920px);
+      overflow: auto;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 26px 90px rgba(0, 0, 0, .28);
+      border: 1px solid rgba(255, 255, 255, .35);
+    }
+
+    .dialog.small {
+      width: min(460px, 100%);
+    }
+
+    .dialog-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+    }
+
+    .dialog-title {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .dialog-body {
+      padding: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #344054;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      border: 1px solid #cfd6d2;
+      background: #fff;
+      border-radius: 8px;
+      min-height: 42px;
+      padding: 10px 12px;
+      outline: none;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(17, 100, 102, .14);
+    }
+
+    .question-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      margin: 12px 0;
+      background: #fbfcfa;
+    }
+
+    .question-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-weight: 900;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin: 8px 0;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    .option input {
+      width: 18px;
+      height: 18px;
+      min-height: 18px;
+      margin-top: 2px;
+      flex: 0 0 auto;
+    }
+
+    .option.correct {
+      border-color: rgba(20, 122, 75, .48);
+      background: #edf8f1;
+    }
+
+    .option.wrong {
+      border-color: rgba(180, 35, 24, .42);
+      background: #fff0ef;
+    }
+
+    .result-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f7f8f5;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 560px;
+    }
+
+    .admin-tabs {
+      padding: 14px;
+      background: #f6f7f2;
+      border-right: 1px solid var(--line);
+      display: grid;
+      align-content: start;
+      gap: 8px;
+    }
+
+    .admin-tab {
+      border-radius: 8px;
+      min-height: 42px;
+      text-align: left;
+      padding: 0 12px;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .admin-tab.active {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .admin-panel {
+      padding: 18px;
+      display: none;
+    }
+
+    .admin-panel.active {
+      display: block;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .table th,
+    .table td {
+      padding: 11px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: 14px;
+    }
+
+    .table th {
+      background: #f4f6f1;
+      color: #344054;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .empty {
+      padding: 28px;
+      border: 1px dashed #bec7c1;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 800;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 80;
+      display: grid;
+      gap: 8px;
+    }
+
+    .toast-item {
+      width: min(380px, calc(100vw - 36px));
+      border-radius: 8px;
+      background: #18202a;
+      color: #fff;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      font-weight: 700;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    @media (max-width: 920px) {
+      .hero,
+      .grid,
+      .notes-wrap,
+      .admin-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-tabs {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-actions {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 18px 12px 36px;
+      }
+
+      .hero-copy {
+        min-height: 280px;
+        padding: 26px 20px;
+      }
+
+      .metric-row,
+      .form-grid,
+      .card-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-tabs {
+        grid-template-columns: 1fr;
+      }
+
+      .dialog-body,
+      .dialog-head {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand-lockup">
+          <div class="brand-mark">SS</div>
+          <div>
+            <p class="brand-title">Sure Success Test Series</p>
+            <p class="brand-subtitle">Free and paid MCQ practice</p>
+          </div>
+        </div>
+        <div class="nav-actions">
+          <button class="btn ghost" data-scroll="tests">Tests</button>
+          <button class="btn ghost" data-scroll="notes">Notes</button>
+          <button class="btn primary" id="openStudentLogin">Paid Login</button>
+          <button class="btn dark" id="openAdminLogin">Admin Panel</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Online Test Preparation</p>
+          <h1>Practice tests, notes, results and paid access in one place.</h1>
+          <p>Start with the free 10 MCQ test. Paid test series opens after access login with the test ID and password.</p>
+        </div>
+        <aside class="hero-panel">
+          <div class="metric-row">
+            <div class="metric">
+              <strong id="metricTests">0</strong>
+              <span>Total Tests</span>
+            </div>
+            <div class="metric">
+              <strong id="metricFree">0</strong>
+              <span>Free</span>
+            </div>
+            <div class="metric">
+              <strong id="metricPaid">0</strong>
+              <span>Paid</span>
+            </div>
+          </div>
+          <div class="notice">
+            Paid access ID: 741852963 | Password: 369258147
+          </div>
+          <button class="btn warn" id="payNowHero">Pay With Razorpay</button>
+          <button class="btn primary" id="openFreeTest">Start Free Test</button>
+        </aside>
+      </section>
+
+      <section id="tests">
+        <div class="toolbar">
+          <h2 class="section-title">Available Tests</h2>
+          <div class="filters">
+            <button class="pill active" data-filter="all">All</button>
+            <button class="pill" data-filter="free">Free</button>
+            <button class="pill" data-filter="paid">Paid</button>
+          </div>
+        </div>
+        <div id="testGrid" class="grid"></div>
+      </section>
+
+      <section id="notes">
+        <div class="toolbar">
+          <h2 class="section-title">Study Notes</h2>
+        </div>
+        <div id="notesGrid" class="notes-wrap"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="studentLoginModal" aria-hidden="true">
+    <div class="dialog small">
+      <div class="dialog-head">
+        <h2 class="dialog-title">Paid Test Login</h2>
+        <button class="icon-btn" data-close title="Close">X</button>
+      </div>
+      <div class="dialog-body">
+        <div class="notice" style="margin-bottom:14px;">
+          Payment ke baad paid test unlock karne ke liye ID 741852963 aur password 369258147 use karein.
+        </div>
+        <form id="studentLoginForm" class="form-grid">
+          <div class="field full">
+            <label for="studentName">Student Name</label>
+            <input id="studentName" required placeholder="Enter your name">
+          </div>
+          <div class="field full">
+            <label for="studentMobile">Mobile Number</label>
+            <input id="studentMobile" required inputmode="numeric" placeholder="Enter mobile number">
+          </div>
+          <div class="field full">
+            <label for="studentId">Test Series ID</label>
+            <input id="studentId" required placeholder="741852963">
+          </div>
+          <div class="field full">
+            <label for="studentPass">Password</label>
+            <input id="studentPass" type="password" required placeholder="369258147">
+          </div>
+          <button class="btn warn" type="button" id="payNowLogin">Pay Now</button>
+          <button class="btn primary" type="submit">Unlock Paid Tests</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="adminLoginModal" aria-hidden="true">
+    <div class="dialog small">
+      <div class="dialog-head">
+        <h2 class="dialog-title">Admin Login</h2>
+        <button class="icon-btn" data-close title="Close">X</button>
+      </div>
+      <div class="dialog-body">
+        <form id="adminLoginForm" class="form-grid">
+          <div class="field full">
+            <label for="adminId">Admin ID</label>
+            <input id="adminId" required placeholder="SURESH9549">
+          </div>
+          <div class="field full">
+            <label for="adminPass">Password</label>
+            <input id="adminPass" type="password" required placeholder="SURESH9549">
+          </div>
+          <button class="btn primary" type="submit">Open Panel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="testModal" aria-hidden="true">
+    <div class="dialog">
+      <div class="dialog-head">
+        <div>
+          <h2 class="dialog-title" id="activeTestTitle">Test</h2>
+          <p style="margin:2px 0 0;color:var(--muted);font-weight:700;" id="activeTestMeta"></p>
+        </div>
+        <button class="icon-btn" data-close title="Close">X</button>
+      </div>
+      <div class="dialog-body">
+        <form id="testAttemptForm"></form>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="adminModal" aria-hidden="true">
+    <div class="dialog">
+      <div class="dialog-head">
+        <h2 class="dialog-title">Admin Panel</h2>
+        <button class="icon-btn" data-close title="Close">X</button>
+      </div>
+      <div class="admin-layout">
+        <aside class="admin-tabs">
+          <button class="admin-tab active" data-admin-tab="testsPanel">Tests</button>
+          <button class="admin-tab" data-admin-tab="notesPanel">Notes</button>
+          <button class="admin-tab" data-admin-tab="usersPanel">User Data</button>
+        </aside>
+        <section class="admin-panel active" id="testsPanel">
+          <div class="toolbar" style="margin-top:0;">
+            <h3 class="section-title">Manage Tests</h3>
+            <button class="btn primary" id="newTestBtn">Add Test</button>
+          </div>
+          <div id="adminTestsList"></div>
+          <form id="testEditor" class="hide" style="margin-top:16px;">
+            <div class="form-grid">
+              <input type="hidden" id="editTestId">
+              <div class="field">
+                <label for="testTitle">Test Title</label>
+                <input id="testTitle" required placeholder="Example: Paid Test 2">
+              </div>
+              <div class="field">
+                <label for="testType">Type</label>
+                <select id="testType">
+                  <option value="free">Free</option>
+                  <option value="paid">Paid</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="testPrice">Price</label>
+                <input id="testPrice" type="number" min="0" value="0">
+              </div>
+              <div class="field">
+                <label for="testImage">Test Image</label>
+                <input id="testImage" type="file" accept="image/*">
+              </div>
+              <div class="field full">
+                <label for="testDescription">Description</label>
+                <textarea id="testDescription" required placeholder="Short test details"></textarea>
+              </div>
+            </div>
+            <div class="toolbar" style="margin:18px 0 8px;">
+              <h3 class="section-title" style="font-size:18px;">Questions</h3>
+              <button class="btn ghost" type="button" id="addQuestionBtn">Add Question</button>
+            </div>
+            <div id="questionsEditor"></div>
+            <div class="nav-actions" style="justify-content:flex-start;margin-top:14px;">
+              <button class="btn primary" type="submit">Save Test</button>
+              <button class="btn ghost" type="button" id="cancelTestEdit">Cancel</button>
+            </div>
+          </form>
+        </section>
+        <section class="admin-panel" id="notesPanel">
+          <div class="toolbar" style="margin-top:0;">
+            <h3 class="section-title">Manage Notes</h3>
+            <button class="btn primary" id="newNoteBtn">Add Note</button>
+          </div>
+          <div id="adminNotesList"></div>
+          <form id="noteEditor" class="hide" style="margin-top:16px;">
+            <input type="hidden" id="editNoteId">
+            <div class="form-grid">
+              <div class="field full">
+                <label for="noteTitle">Note Title</label>
+                <input id="noteTitle" required placeholder="Example: Important Formulas">
+              </div>
+              <div class="field full">
+                <label for="noteBody">Note Content</label>
+                <textarea id="noteBody" required placeholder="Write notes here"></textarea>
+              </div>
+              <div class="field full">
+                <label for="noteLink">Link or PDF URL</label>
+                <input id="noteLink" placeholder="Optional link">
+              </div>
+            </div>
+            <div class="nav-actions" style="justify-content:flex-start;margin-top:14px;">
+              <button class="btn primary" type="submit">Save Note</button>
+              <button class="btn ghost" type="button" id="cancelNoteEdit">Cancel</button>
+            </div>
+          </form>
+        </section>
+        <section class="admin-panel" id="usersPanel">
+          <div class="toolbar" style="margin-top:0;">
+            <h3 class="section-title">Saved User Data</h3>
+            <button class="btn danger" id="clearUsersBtn">Clear Local Data</button>
+          </div>
+          <div class="notice" style="margin-bottom:14px;">
+            User login aur result data local browser me save hota hai aur Google Sheet Web App URL par bhejne ki koshish bhi karta hai.
+          </div>
+          <div id="usersTableWrap"></div>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    const CONFIG = {
+      razorpayUrl: "https://rzp.io/rzp/oEMyceQw",
+      sheetUrl: "https://script.google.com/macros/s/AKfycbz6oXz5Oi5bJL1CUyC-oJjU_0ThuUT9sfba1VFGIija6OMTgQNMLIeAFQk06PxhBl-7/exec",
+      paidId: "741852963",
+      paidPassword: "369258147",
+      adminId: "SURESH9549",
+      adminPassword: "SURESH9549"
+    };
+
+    const defaultTests = [
+      {
+        id: "free-10-mcq",
+        title: "Free Demo Test - 10 MCQ",
+        type: "free",
+        price: 0,
+        description: "Start your preparation with this free 10 question practice test.",
+        image: "",
+        questions: [
+          { q: "Which is the largest planet in our solar system?", options: ["Earth", "Jupiter", "Mars", "Venus"], answer: 1 },
+          { q: "What is the capital of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], answer: 2 },
+          { q: "2 + 2 x 3 equals?", options: ["12", "8", "10", "6"], answer: 3 },
+          { q: "Which gas do plants absorb during photosynthesis?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], answer: 2 },
+          { q: "Who wrote the Indian national anthem?", options: ["Mahatma Gandhi", "Rabindranath Tagore", "Premchand", "Sarojini Naidu"], answer: 1 },
+          { q: "Which number is a prime number?", options: ["21", "27", "29", "33"], answer: 2 },
+          { q: "The currency of Japan is?", options: ["Yen", "Dollar", "Won", "Peso"], answer: 0 },
+          { q: "How many days are there in a leap year?", options: ["365", "366", "364", "360"], answer: 1 },
+          { q: "Which organ pumps blood in the human body?", options: ["Brain", "Lungs", "Heart", "Kidney"], answer: 2 },
+          { q: "HTML is mainly used to create?", options: ["Web pages", "Mobile batteries", "Vehicles", "Medicines"], answer: 0 }
+        ]
+      },
+      {
+        id: "paid-sample-1",
+        title: "Paid Test Series - Set 1",
+        type: "paid",
+        price: 99,
+        description: "Premium MCQ practice set for serious preparation.",
+        image: "",
+        questions: [
+          { q: "Which article is related to equality before law in India?", options: ["Article 12", "Article 14", "Article 19", "Article 21"], answer: 1 },
+          { q: "The SI unit of force is?", options: ["Joule", "Newton", "Watt", "Pascal"], answer: 1 },
+          { q: "If 15% of a number is 45, the number is?", options: ["200", "250", "300", "350"], answer: 2 },
+          { q: "Who is known as the father of the Indian Constitution?", options: ["B. R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel", "Rajendra Prasad"], answer: 0 },
+          { q: "Which river is called the Ganga of South India?", options: ["Krishna", "Godavari", "Kaveri", "Narmada"], answer: 1 }
+        ]
+      }
+    ];
+
+    const defaultNotes = [
+      {
+        id: "note-1",
+        title: "Preparation Tips",
+        body: "Daily practice karein, wrong answers revise karein, aur har test ke baad score compare karein.",
+        link: ""
+      }
+    ];
+
+    const state = {
+      tests: load("tests", defaultTests),
+      notes: load("notes", defaultNotes),
+      users: load("users", []),
+      paidUnlocked: sessionStorage.getItem("paidUnlocked") === "yes",
+      activeFilter: "all",
+      currentTest: null
+    };
+
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+
+    function load(key, fallback) {
+      try {
+        const saved = localStorage.getItem("sureSuccess_" + key);
+        return saved ? JSON.parse(saved) : structuredClone(fallback);
+      } catch {
+        return structuredClone(fallback);
+      }
+    }
+
+    function save(key, value) {
+      localStorage.setItem("sureSuccess_" + key, JSON.stringify(value));
+    }
+
+    function toast(message) {
+      const box = document.createElement("div");
+      box.className = "toast-item";
+      box.textContent = message;
+      $("#toast").appendChild(box);
+      setTimeout(() => box.remove(), 3600);
+    }
+
+    function openModal(id) {
+      $("#" + id).classList.add("show");
+      $("#" + id).setAttribute("aria-hidden", "false");
+    }
+
+    function closeModals() {
+      $$(".modal").forEach(modal => {
+        modal.classList.remove("show");
+        modal.setAttribute("aria-hidden", "true");
+      });
+    }
+
+    function sendToSheet(payload) {
+      const data = {
+        timestamp: new Date().toISOString(),
+        ...payload
+      };
+
+      fetch(CONFIG.sheetUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data)
+      }).catch(() => {});
+    }
+
+    function addUserData(entry) {
+      const record = { id: Date.now().toString(), time: new Date().toLocaleString(), ...entry };
+      state.users.unshift(record);
+      save("users", state.users);
+      sendToSheet(record);
+      renderAdminUsers();
+    }
+
+    function render() {
+      renderMetrics();
+      renderTests();
+      renderNotes();
+      renderAdminTests();
+      renderAdminNotes();
+      renderAdminUsers();
+    }
+
+    function renderMetrics() {
+      $("#metricTests").textContent = state.tests.length;
+      $("#metricFree").textContent = state.tests.filter(t => t.type === "free").length;
+      $("#metricPaid").textContent = state.tests.filter(t => t.type === "paid").length;
+    }
+
+    function renderTests() {
+      const list = state.tests.filter(test => state.activeFilter === "all" || test.type === state.activeFilter);
+      const grid = $("#testGrid");
+
+      if (!list.length) {
+        grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">No tests available.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(test => `
+        <article class="card">
+          <div class="test-image">
+            ${test.image ? `<img src="${test.image}" alt="${escapeHtml(test.title)}">` : "TEST SERIES"}
+            <span class="badge">${test.type === "free" ? "FREE" : "PAID"}</span>
+          </div>
+          <div class="card-body">
+            <h3>${escapeHtml(test.title)}</h3>
+            <p>${escapeHtml(test.description)}</p>
+            <div class="meta">
+              <span class="chip">${test.questions.length} MCQ</span>
+              <span class="chip">${test.type === "free" ? "Free Access" : "Rs " + Number(test.price || 0)}</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn primary" data-start-test="${test.id}">Start Test</button>
+              ${test.type === "paid" ? `<button class="btn warn" data-pay-test="${test.id}">Pay Now</button>` : `<button class="btn ghost" data-start-test="${test.id}">Free Test</button>`}
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderNotes() {
+      const grid = $("#notesGrid");
+      if (!state.notes.length) {
+        grid.innerHTML = '<div class="empty" style="grid-column:1/-1;">No notes added yet.</div>';
+        return;
+      }
+
+      grid.innerHTML = state.notes.map(note => `
+        <article class="note">
+          <h3>${escapeHtml(note.title)}</h3>
+          <p>${escapeHtml(note.body)}</p>
+          ${note.link ? `<div style="margin-top:12px;"><a class="btn ghost" href="${escapeAttr(note.link)}" target="_blank" rel="noopener">Open Notes</a></div>` : ""}
+        </article>
+      `).join("");
+    }
+
+    function startTest(testId) {
+      const test = state.tests.find(item => item.id === testId);
+      if (!test) return;
+
+      if (test.type === "paid" && !state.paidUnlocked) {
+        openModal("studentLoginModal");
+        toast("Paid test ke liye pehle login unlock karein.");
+        return;
+      }
+
+      state.currentTest = test;
+      $("#activeTestTitle").textContent = test.title;
+      $("#activeTestMeta").textContent = `${test.questions.length} questions | ${test.type === "paid" ? "Paid" : "Free"}`;
+      $("#testAttemptForm").innerHTML = `
+        <div class="field" style="margin-bottom:14px;">
+          <label for="attemptName">Your Name</label>
+          <input id="attemptName" required placeholder="Enter your name">
+        </div>
+        ${test.questions.map((question, index) => `
+          <div class="question-box">
+            <div class="question-title">Q${index + 1}. ${escapeHtml(question.q)}</div>
+            ${question.options.map((option, optIndex) => `
+              <label class="option" data-question="${index}" data-option="${optIndex}">
+                <input type="radio" required name="q_${index}" value="${optIndex}">
+                <span>${escapeHtml(option)}</span>
+              </label>
+            `).join("")}
+          </div>
+        `).join("")}
+        <button class="btn primary" type="submit">Submit Test</button>
+      `;
+      openModal("testModal");
+    }
+
+    function submitAttempt(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const name = $("#attemptName").value.trim() || "Student";
+      const answers = state.currentTest.questions.map((_, index) => {
+        const checked = form.querySelector(`input[name="q_${index}"]:checked`);
+        return checked ? Number(checked.value) : -1;
+      });
+      let score = 0;
+
+      answers.forEach((answer, index) => {
+        if (answer === state.currentTest.questions[index].answer) score++;
+      });
+
+      $$(".option", form).forEach(option => {
+        const qIndex = Number(option.dataset.question);
+        const optIndex = Number(option.dataset.option);
+        if (optIndex === state.currentTest.questions[qIndex].answer) option.classList.add("correct");
+        if (answers[qIndex] === optIndex && optIndex !== state.currentTest.questions[qIndex].answer) option.classList.add("wrong");
+      });
+
+      addUserData({
+        event: "test_result",
+        name,
+        test: state.currentTest.title,
+        type: state.currentTest.type,
+        score: `${score}/${state.currentTest.questions.length}`
+      });
+
+      form.querySelector("button[type='submit']").remove();
+      form.insertAdjacentHTML("afterbegin", `
+        <div class="result-box">
+          <h3 style="margin:0 0 6px;">Result: ${score}/${state.currentTest.questions.length}</h3>
+          <p style="margin:0;color:var(--muted);font-weight:700;">Answers highlighted below. Your result has been saved.</p>
+        </div>
+      `);
+      toast("Result saved successfully.");
+    }
+
+    function renderAdminTests() {
+      const wrap = $("#adminTestsList");
+      if (!wrap) return;
+      if (!state.tests.length) {
+        wrap.innerHTML = '<div class="empty">No tests found.</div>';
+        return;
+      }
+
+      wrap.innerHTML = `
+        <table class="table">
+          <thead><tr><th>Title</th><th>Type</th><th>Price</th><th>MCQ</th><th>Action</th></tr></thead>
+          <tbody>
+            ${state.tests.map(test => `
+              <tr>
+                <td>${escapeHtml(test.title)}</td>
+                <td>${test.type.toUpperCase()}</td>
+                <td>Rs ${Number(test.price || 0)}</td>
+                <td>${test.questions.length}</td>
+                <td>
+                  <button class="btn ghost" data-edit-test="${test.id}" style="min-height:34px;">Edit</button>
+                  <button class="btn danger" data-delete-test="${test.id}" style="min-height:34px;">Delete</button>
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function openTestEditor(test) {
+      $("#testEditor").classList.remove("hide");
+      $("#editTestId").value = test?.id || "";
+      $("#testTitle").value = test?.title || "";
+      $("#testType").value = test?.type || "paid";
+      $("#testPrice").value = test?.price || 0;
+      $("#testDescription").value = test?.description || "";
+      renderQuestionsEditor(test?.questions || [blankQuestion()]);
+      $("#testTitle").focus();
+    }
+
+    function blankQuestion() {
+      return { q: "", options: ["", "", "", ""], answer: 0 };
+    }
+
+    function renderQuestionsEditor(questions) {
+      $("#questionsEditor").innerHTML = questions.map((question, index) => questionEditorHtml(question, index)).join("");
+    }
+
+    function questionEditorHtml(question, index) {
+      return `
+        <div class="question-box" data-edit-question="${index}">
+          <div class="question-title">
+            <span>Question ${index + 1}</span>
+            <button class="btn danger" type="button" data-remove-question="${index}" style="min-height:34px;">Remove</button>
+          </div>
+          <div class="field">
+            <label>Question</label>
+            <input data-q-text value="${escapeAttr(question.q)}" required placeholder="Write question">
+          </div>
+          <div class="form-grid" style="margin-top:10px;">
+            ${[0, 1, 2, 3].map(optIndex => `
+              <div class="field">
+                <label>Option ${optIndex + 1}</label>
+                <input data-q-option="${optIndex}" value="${escapeAttr(question.options[optIndex] || "")}" required>
+              </div>
+            `).join("")}
+            <div class="field full">
+              <label>Correct Answer</label>
+              <select data-q-answer>
+                ${[0, 1, 2, 3].map(optIndex => `<option value="${optIndex}" ${Number(question.answer) === optIndex ? "selected" : ""}>Option ${optIndex + 1}</option>`).join("")}
+              </select>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function collectQuestions() {
+      return $$("[data-edit-question]", $("#questionsEditor")).map(box => ({
+        q: $("[data-q-text]", box).value.trim(),
+        options: [0, 1, 2, 3].map(i => $(`[data-q-option="${i}"]`, box).value.trim()),
+        answer: Number($("[data-q-answer]", box).value)
+      })).filter(q => q.q && q.options.every(Boolean));
+    }
+
+    function imageToDataUrl(file) {
+      return new Promise(resolve => {
+        if (!file) return resolve("");
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function saveTest(event) {
+      event.preventDefault();
+      const id = $("#editTestId").value || "test-" + Date.now();
+      const existing = state.tests.find(test => test.id === id);
+      const image = await imageToDataUrl($("#testImage").files[0]);
+      const questions = collectQuestions();
+
+      if (!questions.length) {
+        toast("At least one complete question is required.");
+        return;
+      }
+
+      const nextTest = {
+        id,
+        title: $("#testTitle").value.trim(),
+        type: $("#testType").value,
+        price: Number($("#testPrice").value || 0),
+        description: $("#testDescription").value.trim(),
+        image: image || existing?.image || "",
+        questions
+      };
+
+      const index = state.tests.findIndex(test => test.id === id);
+      if (index >= 0) state.tests[index] = nextTest;
+      else state.tests.push(nextTest);
+
+      save("tests", state.tests);
+      $("#testEditor").classList.add("hide");
+      $("#testImage").value = "";
+      render();
+      toast("Test saved.");
+    }
+
+    function renderAdminNotes() {
+      const wrap = $("#adminNotesList");
+      if (!wrap) return;
+      if (!state.notes.length) {
+        wrap.innerHTML = '<div class="empty">No notes found.</div>';
+        return;
+      }
+
+      wrap.innerHTML = `
+        <table class="table">
+          <thead><tr><th>Title</th><th>Link</th><th>Action</th></tr></thead>
+          <tbody>
+            ${state.notes.map(note => `
+              <tr>
+                <td>${escapeHtml(note.title)}</td>
+                <td>${note.link ? `<a href="${escapeAttr(note.link)}" target="_blank" rel="noopener">Open</a>` : "-"}</td>
+                <td>
+                  <button class="btn ghost" data-edit-note="${note.id}" style="min-height:34px;">Edit</button>
+                  <button class="btn danger" data-delete-note="${note.id}" style="min-height:34px;">Delete</button>
+                </td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function openNoteEditor(note) {
+      $("#noteEditor").classList.remove("hide");
+      $("#editNoteId").value = note?.id || "";
+      $("#noteTitle").value = note?.title || "";
+      $("#noteBody").value = note?.body || "";
+      $("#noteLink").value = note?.link || "";
+      $("#noteTitle").focus();
+    }
+
+    function saveNote(event) {
+      event.preventDefault();
+      const id = $("#editNoteId").value || "note-" + Date.now();
+      const nextNote = {
+        id,
+        title: $("#noteTitle").value.trim(),
+        body: $("#noteBody").value.trim(),
+        link: $("#noteLink").value.trim()
+      };
+      const index = state.notes.findIndex(note => note.id === id);
+      if (index >= 0) state.notes[index] = nextNote;
+      else state.notes.push(nextNote);
+      save("notes", state.notes);
+      $("#noteEditor").classList.add("hide");
+      render();
+      toast("Note saved.");
+    }
+
+    function renderAdminUsers() {
+      const wrap = $("#usersTableWrap");
+      if (!wrap) return;
+      if (!state.users.length) {
+        wrap.innerHTML = '<div class="empty">No user data saved yet.</div>';
+        return;
+      }
+
+      wrap.innerHTML = `
+        <table class="table">
+          <thead><tr><th>Time</th><th>Name</th><th>Mobile</th><th>Event</th><th>Test</th><th>Score</th></tr></thead>
+          <tbody>
+            ${state.users.map(user => `
+              <tr>
+                <td>${escapeHtml(user.time || "")}</td>
+                <td>${escapeHtml(user.name || "")}</td>
+                <td>${escapeHtml(user.mobile || "")}</td>
+                <td>${escapeHtml(user.event || "")}</td>
+                <td>${escapeHtml(user.test || "")}</td>
+                <td>${escapeHtml(user.score || "")}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char]));
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/`/g, "&#96;");
+    }
+
+    document.addEventListener("click", event => {
+      const close = event.target.closest("[data-close]");
+      if (close) closeModals();
+
+      const scrollBtn = event.target.closest("[data-scroll]");
+      if (scrollBtn) document.getElementById(scrollBtn.dataset.scroll).scrollIntoView({ behavior: "smooth" });
+
+      const filter = event.target.closest("[data-filter]");
+      if (filter) {
+        state.activeFilter = filter.dataset.filter;
+        $$(".pill").forEach(btn => btn.classList.toggle("active", btn === filter));
+        renderTests();
+      }
+
+      const start = event.target.closest("[data-start-test]");
+      if (start) startTest(start.dataset.startTest);
+
+      const pay = event.target.closest("[data-pay-test]");
+      if (pay) window.open(CONFIG.razorpayUrl, "_blank", "noopener");
+
+      const editTest = event.target.closest("[data-edit-test]");
+      if (editTest) openTestEditor(state.tests.find(test => test.id === editTest.dataset.editTest));
+
+      const deleteTest = event.target.closest("[data-delete-test]");
+      if (deleteTest && confirm("Delete this test?")) {
+        state.tests = state.tests.filter(test => test.id !== deleteTest.dataset.deleteTest);
+        save("tests", state.tests);
+        render();
+      }
+
+      const removeQuestion = event.target.closest("[data-remove-question]");
+      if (removeQuestion) {
+        removeQuestion.closest("[data-edit-question]").remove();
+        $$("[data-edit-question]", $("#questionsEditor")).forEach((box, index) => {
+          box.dataset.editQuestion = index;
+          $(".question-title span", box).textContent = "Question " + (index + 1);
+        });
+      }
+
+      const editNote = event.target.closest("[data-edit-note]");
+      if (editNote) openNoteEditor(state.notes.find(note => note.id === editNote.dataset.editNote));
+
+      const deleteNote = event.target.closest("[data-delete-note]");
+      if (deleteNote && confirm("Delete this note?")) {
+        state.notes = state.notes.filter(note => note.id !== deleteNote.dataset.deleteNote);
+        save("notes", state.notes);
+        render();
+      }
+    });
+
+    $("#openStudentLogin").addEventListener("click", () => openModal("studentLoginModal"));
+    $("#openAdminLogin").addEventListener("click", () => openModal("adminLoginModal"));
+    $("#payNowHero").addEventListener("click", () => window.open(CONFIG.razorpayUrl, "_blank", "noopener"));
+    $("#payNowLogin").addEventListener("click", () => window.open(CONFIG.razorpayUrl, "_blank", "noopener"));
+    $("#openFreeTest").addEventListener("click", () => startTest("free-10-mcq"));
+    $("#testAttemptForm").addEventListener("submit", submitAttempt);
+    $("#testEditor").addEventListener("submit", saveTest);
+    $("#noteEditor").addEventListener("submit", saveNote);
+
+    $("#studentLoginForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const name = $("#studentName").value.trim();
+      const mobile = $("#studentMobile").value.trim();
+      const id = $("#studentId").value.trim();
+      const pass = $("#studentPass").value.trim();
+      if (id === CONFIG.paidId && pass === CONFIG.paidPassword) {
+        state.paidUnlocked = true;
+        sessionStorage.setItem("paidUnlocked", "yes");
+        addUserData({ event: "paid_login", name, mobile, test: "Paid Access", score: "" });
+        closeModals();
+        toast("Paid tests unlocked.");
+      } else {
+        toast("ID or password is incorrect.");
+      }
+    });
+
+    $("#adminLoginForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const id = $("#adminId").value.trim().toUpperCase();
+      const pass = $("#adminPass").value.trim().toUpperCase();
+      if (id === CONFIG.adminId && pass === CONFIG.adminPassword) {
+        closeModals();
+        openModal("adminModal");
+        toast("Admin panel opened.");
+      } else {
+        toast("Admin ID or password is incorrect.");
+      }
+    });
+
+    $$(".admin-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        $$(".admin-tab").forEach(btn => btn.classList.toggle("active", btn === tab));
+        $$(".admin-panel").forEach(panel => panel.classList.toggle("active", panel.id === tab.dataset.adminTab));
+      });
+    });
+
+    $("#newTestBtn").addEventListener("click", () => openTestEditor(null));
+    $("#cancelTestEdit").addEventListener("click", () => $("#testEditor").classList.add("hide"));
+    $("#addQuestionBtn").addEventListener("click", () => {
+      $("#questionsEditor").insertAdjacentHTML("beforeend", questionEditorHtml(blankQuestion(), $$("[data-edit-question]", $("#questionsEditor")).length));
+    });
+    $("#newNoteBtn").addEventListener("click", () => openNoteEditor(null));
+    $("#cancelNoteEdit").addEventListener("click", () => $("#noteEditor").classList.add("hide"));
+    $("#clearUsersBtn").addEventListener("click", () => {
+      if (!confirm("Clear local user data?")) return;
+      state.users = [];
+      save("users", state.users);
+      renderAdminUsers();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeModals();
+    });
+
+    render();
+  </script>
+</body>
+</html>
