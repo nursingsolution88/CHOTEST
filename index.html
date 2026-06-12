@@ -1,6 +1,5 @@
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sure Success Test Series</title>
@@ -753,15 +752,15 @@
         <aside class="hero-panel">
           <div class="metric-row">
             <div class="metric">
-              <strong id="metricTests">0</strong>
+              <strong id="metricTests">2</strong>
               <span>Total Tests</span>
             </div>
             <div class="metric">
-              <strong id="metricFree">0</strong>
+              <strong id="metricFree">1</strong>
               <span>Free</span>
             </div>
             <div class="metric">
-              <strong id="metricPaid">0</strong>
+              <strong id="metricPaid">1</strong>
               <span>Paid</span>
             </div>
           </div>
@@ -782,14 +781,58 @@
             <button class="pill" data-filter="paid">Paid</button>
           </div>
         </div>
-        <div id="testGrid" class="grid"></div>
+        <div id="testGrid" class="grid">
+        <article class="card">
+          <div class="test-image">
+            TEST SERIES
+            <span class="badge">FREE</span>
+          </div>
+          <div class="card-body">
+            <h3>Free Demo Test - 10 MCQ</h3>
+            <p>Start your preparation with this free 10 question practice test.</p>
+            <div class="meta">
+              <span class="chip">10 MCQ</span>
+              <span class="chip">Free Access</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn primary" data-start-test="free-10-mcq">Start Test</button>
+              <button class="btn ghost" data-start-test="free-10-mcq">Free Test</button>
+            </div>
+          </div>
+        </article>
+      
+        <article class="card">
+          <div class="test-image">
+            TEST SERIES
+            <span class="badge">PAID</span>
+          </div>
+          <div class="card-body">
+            <h3>Paid Test Series - Set 1</h3>
+            <p>Premium MCQ practice set for serious preparation.</p>
+            <div class="meta">
+              <span class="chip">5 MCQ</span>
+              <span class="chip">Rs 99</span>
+            </div>
+            <div class="card-actions">
+              <button class="btn primary" data-start-test="paid-sample-1">Start Test</button>
+              <button class="btn warn" data-pay-test="paid-sample-1">Pay Now</button>
+            </div>
+          </div>
+        </article>
+      </div>
       </section>
 
       <section id="notes">
         <div class="toolbar">
           <h2 class="section-title">Study Notes</h2>
         </div>
-        <div id="notesGrid" class="notes-wrap"></div>
+        <div id="notesGrid" class="notes-wrap">
+        <article class="note">
+          <h3>Preparation Tips 00000</h3>
+          <p>Daily practice karein, wrong answers revise karein, aur har test ke baad score compare karein.</p>
+          
+        </article>
+      </div>
       </section>
     </main>
   </div>
@@ -798,7 +841,7 @@
     <div class="dialog small">
       <div class="dialog-head">
         <h2 class="dialog-title">Paid Test Login</h2>
-        <button class="icon-btn" data-close title="Close">X</button>
+        <button class="icon-btn" data-close="" title="Close">X</button>
       </div>
       <div class="dialog-body">
         <div class="notice" style="margin-bottom:14px;">
@@ -807,19 +850,19 @@
         <form id="studentLoginForm" class="form-grid">
           <div class="field full">
             <label for="studentName">Student Name</label>
-            <input id="studentName" required placeholder="Enter your name">
+            <input id="studentName" required="" placeholder="Enter your name">
           </div>
           <div class="field full">
             <label for="studentMobile">Mobile Number</label>
-            <input id="studentMobile" required inputmode="numeric" placeholder="Enter mobile number">
+            <input id="studentMobile" required="" inputmode="numeric" placeholder="Enter mobile number">
           </div>
           <div class="field full">
             <label for="studentId">Test Series ID</label>
-            <input id="studentId" required autocomplete="off" placeholder="Enter test series ID">
+            <input id="studentId" required="" autocomplete="off" placeholder="Enter test series ID">
           </div>
           <div class="field full">
             <label for="studentPass">Password</label>
-            <input id="studentPass" type="password" required autocomplete="off" placeholder="Enter password">
+            <input id="studentPass" type="password" required="" autocomplete="off" placeholder="Enter password">
           </div>
           <button class="btn warn" type="button" id="payNowLogin">Pay Now</button>
           <button class="btn primary" type="submit">Unlock Paid Tests</button>
@@ -832,18 +875,18 @@
     <div class="dialog small">
       <div class="dialog-head">
         <h2 class="dialog-title">Admin Login</h2>
-        <button class="icon-btn" data-close title="Close">X</button>
+        <button class="icon-btn" data-close="" title="Close">X</button>
       </div>
       <div class="dialog-body">
         <form id="adminLoginForm" class="form-grid">
           <div class="field full">
             <label for="adminId">Admin ID</label>
-            <input id="adminId" required autocomplete="off" placeholder="Enter admin ID">
+            <input id="adminId" required="" autocomplete="off" placeholder="Enter admin ID">
 
           </div>
           <div class="field full">
             <label for="adminPass">Password</label>
-            <input id="adminPass" type="password" required autocomplete="off" placeholder="Enter password">
+            <input id="adminPass" type="password" required="" autocomplete="off" placeholder="Enter password">
           </div>
           <button class="btn primary" type="submit">Open Panel</button>
         </form>
@@ -858,7 +901,7 @@
           <h2 class="dialog-title" id="activeTestTitle">Test</h2>
           <p style="margin:2px 0 0;color:var(--muted);font-weight:700;" id="activeTestMeta"></p>
         </div>
-        <button class="icon-btn" data-close title="Close">X</button>
+        <button class="icon-btn" data-close="" title="Close">X</button>
       </div>
       <div class="dialog-body">
         <form id="testAttemptForm"></form>
@@ -866,11 +909,11 @@
     </div>
   </div>
 
-  <div class="modal" id="adminModal" aria-hidden="true">
+  <div class="modal show" id="adminModal" aria-hidden="false">
     <div class="dialog">
       <div class="dialog-head">
         <h2 class="dialog-title">Admin Panel</h2>
-        <button class="icon-btn" data-close title="Close">X</button>
+        <button class="icon-btn" data-close="" title="Close">X</button>
       </div>
       <div class="admin-layout">
         <aside class="admin-tabs">
@@ -887,13 +930,42 @@
               <button class="btn primary" id="newTestBtn">Add Test</button>
             </div>
           </div>
-          <div id="adminTestsList"></div>
-          <form id="testEditor" class="hide" style="margin-top:16px;">
+          <div id="adminTestsList">
+        <table class="table">
+          <thead><tr><th>Title</th><th>Type</th><th>Price</th><th>MCQ</th><th>Action</th></tr></thead>
+          <tbody>
+            
+              <tr>
+                <td>Free Demo Test - 10 MCQ</td>
+                <td>FREE</td>
+                <td>Rs 0</td>
+                <td>10</td>
+                <td>
+                  <button class="btn ghost" data-edit-test="free-10-mcq" style="min-height:34px;">Edit</button>
+                  <button class="btn danger" data-delete-test="free-10-mcq" style="min-height:34px;">Delete</button>
+                </td>
+              </tr>
+            
+              <tr>
+                <td>Paid Test Series - Set 1</td>
+                <td>PAID</td>
+                <td>Rs 99</td>
+                <td>5</td>
+                <td>
+                  <button class="btn ghost" data-edit-test="paid-sample-1" style="min-height:34px;">Edit</button>
+                  <button class="btn danger" data-delete-test="paid-sample-1" style="min-height:34px;">Delete</button>
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+          <form id="testEditor" class="" style="margin-top:16px;">
             <div class="form-grid">
-              <input type="hidden" id="editTestId">
+              <input type="hidden" id="editTestId" value="">
               <div class="field">
                 <label for="testTitle">Test Title</label>
-                <input id="testTitle" required placeholder="Example: Paid Test 2">
+                <input id="testTitle" required="" placeholder="Example: Paid Test 2">
               </div>
               <div class="field">
                 <label for="testType">Type</label>
@@ -912,14 +984,54 @@
               </div>
               <div class="field full">
                 <label for="testDescription">Description</label>
-                <textarea id="testDescription" required placeholder="Short test details"></textarea>
+                <textarea id="testDescription" required="" placeholder="Short test details"></textarea>
               </div>
             </div>
             <div class="toolbar" style="margin:18px 0 8px;">
               <h3 class="section-title" style="font-size:18px;">Questions</h3>
               <button class="btn ghost" type="button" id="addQuestionBtn">Add Question</button>
             </div>
-            <div id="questionsEditor"></div>
+            <div id="questionsEditor">
+        <div class="question-box" data-edit-question="0">
+          <div class="question-title">
+            <span>Question 1</span>
+            <button class="btn danger" type="button" data-remove-question="0" style="min-height:34px;">Remove</button>
+          </div>
+          <div class="field">
+            <label>Question</label>
+            <input data-q-text="" value="" required="" placeholder="Write question">
+          </div>
+          <div class="form-grid" style="margin-top:10px;">
+            
+              <div class="field">
+                <label>Option 1</label>
+                <input data-q-option="0" value="" required="">
+              </div>
+            
+              <div class="field">
+                <label>Option 2</label>
+                <input data-q-option="1" value="" required="">
+              </div>
+            
+              <div class="field">
+                <label>Option 3</label>
+                <input data-q-option="2" value="" required="">
+              </div>
+            
+              <div class="field">
+                <label>Option 4</label>
+                <input data-q-option="3" value="" required="">
+              </div>
+            
+            <div class="field full">
+              <label>Correct Answer</label>
+              <select data-q-answer="">
+                <option value="0" selected="">Option 1</option><option value="1">Option 2</option><option value="2">Option 3</option><option value="3">Option 4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
             <div class="nav-actions" style="justify-content:flex-start;margin-top:14px;">
               <button class="btn primary" type="submit">Save Test</button>
               <button class="btn ghost" type="button" id="cancelTestEdit">Cancel</button>
@@ -931,17 +1043,33 @@
             <h3 class="section-title">Manage Notes</h3>
             <button class="btn primary" id="newNoteBtn">Add Note</button>
           </div>
-          <div id="adminNotesList"></div>
+          <div id="adminNotesList">
+        <table class="table">
+          <thead><tr><th>Title</th><th>Link</th><th>Action</th></tr></thead>
+          <tbody>
+            
+              <tr>
+                <td>Preparation Tips 00000</td>
+                <td>-</td>
+                <td>
+                  <button class="btn ghost" data-edit-note="note-1" style="min-height:34px;">Edit</button>
+                  <button class="btn danger" data-delete-note="note-1" style="min-height:34px;">Delete</button>
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
           <form id="noteEditor" class="hide" style="margin-top:16px;">
             <input type="hidden" id="editNoteId">
             <div class="form-grid">
               <div class="field full">
                 <label for="noteTitle">Note Title</label>
-                <input id="noteTitle" required placeholder="Example: Important Formulas">
+                <input id="noteTitle" required="" placeholder="Example: Important Formulas">
               </div>
               <div class="field full">
                 <label for="noteBody">Note Content</label>
-                <textarea id="noteBody" required placeholder="Write notes here"></textarea>
+                <textarea id="noteBody" required="" placeholder="Write notes here"></textarea>
               </div>
               <div class="field full">
                 <label for="noteLink">Link or PDF URL</label>
@@ -962,7 +1090,7 @@
           <div class="notice" style="margin-bottom:14px;">
             User login aur result data local browser me save hota hai aur Google Sheet Web App URL par bhejne ki koshish bhi karta hai.
           </div>
-          <div id="usersTableWrap"></div>
+          <div id="usersTableWrap"><div class="empty">No user data saved yet.</div></div>
         </section>
       </div>
     </div>
@@ -982,50 +1110,185 @@
 
     const defaultTests = [
       {
-        id: "free-10-mcq",
-        title: "Free Demo Test - 10 MCQ",
-        type: "free",
-        price: 0,
-        description: "Start your preparation with this free 10 question practice test.",
-        image: "",
-        questions: [
-          { q: "Which is the largest planet in our solar system?", options: ["Earth", "Jupiter", "Mars", "Venus"], answer: 1 },
-          { q: "What is the capital of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], answer: 2 },
-          { q: "2 + 2 x 3 equals?", options: ["12", "8", "10", "6"], answer: 2 },
-          { q: "Which gas do plants absorb during photosynthesis?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], answer: 2 },
-          { q: "Who wrote the Indian national anthem?", options: ["Mahatma Gandhi", "Rabindranath Tagore", "Premchand", "Sarojini Naidu"], answer: 1 },
-          { q: "Which number is a prime number?", options: ["21", "27", "29", "33"], answer: 2 },
-          { q: "The currency of Japan is?", options: ["Yen", "Dollar", "Won", "Peso"], answer: 0 },
-          { q: "How many days are there in a leap year?", options: ["365", "366", "364", "360"], answer: 1 },
-          { q: "Which organ pumps blood in the human body?", options: ["Brain", "Lungs", "Heart", "Kidney"], answer: 2 },
-          { q: "HTML is mainly used to create?", options: ["Web pages", "Mobile batteries", "Vehicles", "Medicines"], answer: 0 }
-        ]
+            "id": "free-10-mcq",
+            "title": "Free Demo Test - 10 MCQ",
+            "type": "free",
+            "price": 0,
+            "description": "Start your preparation with this free 10 question practice test.",
+            "image": "",
+            "questions": [
+                  {
+                        "q": "Which is the largest planet in our solar system?",
+                        "options": [
+                              "Earth",
+                              "Jupiter",
+                              "Mars",
+                              "Venus"
+                        ],
+                        "answer": 1
+                  },
+                  {
+                        "q": "What is the capital of India?",
+                        "options": [
+                              "Mumbai",
+                              "Kolkata",
+                              "New Delhi",
+                              "Chennai"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "2 + 2 x 3 equals?",
+                        "options": [
+                              "12",
+                              "8",
+                              "10",
+                              "6"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "Which gas do plants absorb during photosynthesis?",
+                        "options": [
+                              "Oxygen",
+                              "Nitrogen",
+                              "Carbon dioxide",
+                              "Hydrogen"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "Who wrote the Indian national anthem?",
+                        "options": [
+                              "Mahatma Gandhi",
+                              "Rabindranath Tagore",
+                              "Premchand",
+                              "Sarojini Naidu"
+                        ],
+                        "answer": 1
+                  },
+                  {
+                        "q": "Which number is a prime number?",
+                        "options": [
+                              "21",
+                              "27",
+                              "29",
+                              "33"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "The currency of Japan is?",
+                        "options": [
+                              "Yen",
+                              "Dollar",
+                              "Won",
+                              "Peso"
+                        ],
+                        "answer": 0
+                  },
+                  {
+                        "q": "How many days are there in a leap year?",
+                        "options": [
+                              "365",
+                              "366",
+                              "364",
+                              "360"
+                        ],
+                        "answer": 1
+                  },
+                  {
+                        "q": "Which organ pumps blood in the human body?",
+                        "options": [
+                              "Brain",
+                              "Lungs",
+                              "Heart",
+                              "Kidney"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "HTML is mainly used to create?",
+                        "options": [
+                              "Web pages",
+                              "Mobile batteries",
+                              "Vehicles",
+                              "Medicines"
+                        ],
+                        "answer": 0
+                  }
+            ]
       },
       {
-        id: "paid-sample-1",
-        title: "Paid Test Series - Set 1",
-        type: "paid",
-        price: 99,
-        description: "Premium MCQ practice set for serious preparation.",
-        image: "",
-        questions: [
-          { q: "Which article is related to equality before law in India?", options: ["Article 12", "Article 14", "Article 19", "Article 21"], answer: 1 },
-          { q: "The SI unit of force is?", options: ["Joule", "Newton", "Watt", "Pascal"], answer: 1 },
-          { q: "If 15% of a number is 45, the number is?", options: ["200", "250", "300", "350"], answer: 2 },
-          { q: "Who is known as the father of the Indian Constitution?", options: ["B. R. Ambedkar", "Jawaharlal Nehru", "Sardar Patel", "Rajendra Prasad"], answer: 0 },
-          { q: "Which river is called the Ganga of South India?", options: ["Krishna", "Godavari", "Kaveri", "Narmada"], answer: 1 }
-        ]
+            "id": "paid-sample-1",
+            "title": "Paid Test Series - Set 1",
+            "type": "paid",
+            "price": 99,
+            "description": "Premium MCQ practice set for serious preparation.",
+            "image": "",
+            "questions": [
+                  {
+                        "q": "Which article is related to equality before law in India?",
+                        "options": [
+                              "Article 12",
+                              "Article 14",
+                              "Article 19",
+                              "Article 21"
+                        ],
+                        "answer": 1
+                  },
+                  {
+                        "q": "The SI unit of force is?",
+                        "options": [
+                              "Joule",
+                              "Newton",
+                              "Watt",
+                              "Pascal"
+                        ],
+                        "answer": 1
+                  },
+                  {
+                        "q": "If 15% of a number is 45, the number is?",
+                        "options": [
+                              "200",
+                              "250",
+                              "300",
+                              "350"
+                        ],
+                        "answer": 2
+                  },
+                  {
+                        "q": "Who is known as the father of the Indian Constitution?",
+                        "options": [
+                              "B. R. Ambedkar",
+                              "Jawaharlal Nehru",
+                              "Sardar Patel",
+                              "Rajendra Prasad"
+                        ],
+                        "answer": 0
+                  },
+                  {
+                        "q": "Which river is called the Ganga of South India?",
+                        "options": [
+                              "Krishna",
+                              "Godavari",
+                              "Kaveri",
+                              "Narmada"
+                        ],
+                        "answer": 1
+                  }
+            ]
       }
-    ];
+];
 
     const defaultNotes = [
       {
-        id: "note-1",
-        title: "Preparation Tips",
-        body: "Daily practice karein, wrong answers revise karein, aur har test ke baad score compare karein.",
-        link: ""
+            "id": "note-1",
+            "title": "Preparation Tips 00000",
+            "body": "Daily practice karein, wrong answers revise karein, aur har test ke baad score compare karein.",
+            "link": ""
       }
-    ];
+];
 
     const state = {
       tests: load("tests", defaultTests),
@@ -1715,5 +1978,6 @@
     render();
     loadOnlineState();
   </script>
-</body>
-</html>
+
+
+</body></html>
