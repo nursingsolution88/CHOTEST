@@ -987,11 +987,7 @@
         questions: [
           { q: "Which is the largest planet in our solar system?", options: ["Earth", "Jupiter", "Mars", "Venus"], answer: 1 },
           { q: "What is the capital of India?", options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"], answer: 2 },
-          {
-  q: "Drug of choice in anaphylaxis?",
-  options: ["Atropine", "Hydrocortisone", "Epinephrine", "Dopamine"],
-  answer: 2
-},
+          { q: "2 + 2 x 3 equals?", options: ["12", "8", "10", "6"], answer: 2 },
           { q: "Which gas do plants absorb during photosynthesis?", options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"], answer: 2 },
           { q: "Who wrote the Indian national anthem?", options: ["Mahatma Gandhi", "Rabindranath Tagore", "Premchand", "Sarojini Naidu"], answer: 1 },
           { q: "Which number is a prime number?", options: ["21", "27", "29", "33"], answer: 2 },
@@ -1119,6 +1115,12 @@
       $("#metricTests").textContent = state.tests.length;
       $("#metricFree").textContent = state.tests.filter(t => t.type === "free").length;
       $("#metricPaid").textContent = state.tests.filter(t => t.type === "paid").length;
+    }
+
+    function setFilter(filter) {
+      state.activeFilter = filter;
+      $$(".pill").forEach(btn => btn.classList.toggle("active", btn.dataset.filter === filter));
+      renderTests();
     }
 
     function renderTests() {
@@ -1365,7 +1367,10 @@
       $("#testEditor").classList.add("hide");
       $("#testImage").value = "";
       render();
-      toast("Test saved.");
+      setFilter("all");
+      closeModals();
+      document.getElementById("tests").scrollIntoView({ behavior: "smooth" });
+      toast("Test saved. Website list updated.");
     }
 
     function renderAdminNotes() {
@@ -1472,9 +1477,7 @@
 
       const filter = event.target.closest("[data-filter]");
       if (filter) {
-        state.activeFilter = filter.dataset.filter;
-        $$(".pill").forEach(btn => btn.classList.toggle("active", btn === filter));
-        renderTests();
+        setFilter(filter.dataset.filter);
       }
 
       const start = event.target.closest("[data-start-test]");
