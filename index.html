@@ -766,10 +766,10 @@
             </div>
           </div>
           <div class="notice">
-  🔐 ₹20 Payment के बाद ID & Password प्राप्त करें।
-</div>
+            Payment ke baad access details share kiye jayenge.
+          </div>
           <button class="btn warn" id="payNowHero">Pay With Razorpay</button>
-          <button class="btn primary" 
+          <button class="btn primary" id="openFreeTest">Start Free Test</button>
         </aside>
       </section>
 
@@ -802,8 +802,8 @@
       </div>
       <div class="dialog-body">
         <div class="notice" style="margin-bottom:14px;">
-  🔐 Payment के बाद आपको ID और Password प्रदान किए जाएंगे।
-</div>
+          Payment ke baad mile hue access details se paid tests unlock karein.
+        </div>
         <form id="studentLoginForm" class="form-grid">
           <div class="field full">
             <label for="studentName">Student Name</label>
@@ -815,11 +815,11 @@
           </div>
           <div class="field full">
             <label for="studentId">Test Series ID</label>
-            <input id="studentId" required placeholder="741852963">
+            <input id="studentId" required autocomplete="off" placeholder="Enter test series ID">
           </div>
           <div class="field full">
             <label for="studentPass">Password</label>
-            <input id="studentPass" type="password" required placeholder="369258147">
+            <input id="studentPass" type="password" required autocomplete="off" placeholder="Enter password">
           </div>
           <button class="btn warn" type="button" id="payNowLogin">Pay Now</button>
           <button class="btn primary" type="submit">Unlock Paid Tests</button>
@@ -838,13 +838,12 @@
         <form id="adminLoginForm" class="form-grid">
           <div class="field full">
             <label for="adminId">Admin ID</label>
-           <input id="adminId" required placeholder="Enter Admin ID">
+            <input id="adminId" required autocomplete="off" placeholder="Enter admin ID">
 
-<input id="adminPass" type="password" required placeholder="Enter Password">
           </div>
           <div class="field full">
             <label for="adminPass">Password</label>
-            <input id="adminPass" type="password" required placeholder="">
+            <input id="adminPass" type="password" required autocomplete="off" placeholder="Enter password">
           </div>
           <button class="btn primary" type="submit">Open Panel</button>
         </form>
@@ -971,10 +970,10 @@
     const CONFIG = {
       razorpayUrl: "https://rzp.io/rzp/oEMyceQw",
       sheetUrl: "https://script.google.com/macros/s/AKfycbz6oXz5Oi5bJL1CUyC-oJjU_0ThuUT9sfba1VFGIija6OMTgQNMLIeAFQk06PxhBl-7/exec",
-      paidId: "741852963",
-      paidPassword: "369258147",
-      adminId: "SURESH9549",
-      adminPassword: "SURESH9549"
+      paidIdHash: "a5b810a3190a39033de4d82052fdf6f4c9765516d6b7eeb0c496adf8a3d3efc9",
+      paidPasswordHash: "258f264e2ca3f2376ea542aa491ba071b24bc04427f45610d7b56d83e9f347e4",
+      adminIdHash: "12334195476a3012e906bd2d29c1f696d818d93d8c7e75a6c00589409efe089d",
+      adminPasswordHash: "12334195476a3012e906bd2d29c1f696d818d93d8c7e75a6c00589409efe089d"
     };
 
     const defaultTests = [
@@ -1047,6 +1046,18 @@
 
     function save(key, value) {
       localStorage.setItem("sureSuccess_" + key, JSON.stringify(value));
+    }
+
+    async function hashText(value) {
+      const bytes = new TextEncoder().encode(value);
+      const digest = await crypto.subtle.digest("SHA-256", bytes);
+      return [...new Uint8Array(digest)]
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    async function matchesHash(value, expectedHash) {
+      return (await hashText(value)) === expectedHash;
     }
 
     function toast(message) {
@@ -1507,13 +1518,15 @@
     $("#testEditor").addEventListener("submit", saveTest);
     $("#noteEditor").addEventListener("submit", saveNote);
 
-    $("#studentLoginForm").addEventListener("submit", event => {
+    $("#studentLoginForm").addEventListener("submit", async event => {
       event.preventDefault();
       const name = $("#studentName").value.trim();
       const mobile = $("#studentMobile").value.trim();
       const id = $("#studentId").value.trim();
       const pass = $("#studentPass").value.trim();
-      if (id === CONFIG.paidId && pass === CONFIG.paidPassword) {
+      const validId = await matchesHash(id, CONFIG.paidIdHash);
+      const validPassword = await matchesHash(pass, CONFIG.paidPasswordHash);
+      if (validId && validPassword) {
         state.paidUnlocked = true;
         sessionStorage.setItem("paidUnlocked", "yes");
         addUserData({ event: "paid_login", name, mobile, test: "Paid Access", score: "" });
@@ -1524,11 +1537,13 @@
       }
     });
 
-    $("#adminLoginForm").addEventListener("submit", event => {
+    $("#adminLoginForm").addEventListener("submit", async event => {
       event.preventDefault();
       const id = $("#adminId").value.trim().toUpperCase();
       const pass = $("#adminPass").value.trim().toUpperCase();
-      if (id === CONFIG.adminId && pass === CONFIG.adminPassword) {
+      const validId = await matchesHash(id, CONFIG.adminIdHash);
+      const validPassword = await matchesHash(pass, CONFIG.adminPasswordHash);
+      if (validId && validPassword) {
         closeModals();
         openModal("adminModal");
         toast("Admin panel opened.");
