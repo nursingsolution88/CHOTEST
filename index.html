@@ -1717,3 +1717,110 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nursing Solution Test Series</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f5f5;
+margin:0;
+padding:20px;
+}
+
+h1{
+text-align:center;
+}
+
+#tests{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+padding:15px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+.btn{
+display:inline-block;
+padding:10px 15px;
+background:#007bff;
+color:white;
+text-decoration:none;
+border-radius:5px;
+margin-top:10px;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Nursing Solution Test Series</h1>
+
+<div id="tests">
+Loading Tests...
+</div>
+
+<script>
+
+const API =
+"https://script.google.com/macros/s/AKfycbyt1y9qO6zuBiilKpHTnSdlpJk7y8qvICekXp92JlWXZYTEBkII-USrZ3kq7BrZpZsR/exec?action=getTests";
+
+fetch(API)
+.then(res=>res.json())
+.then(data=>{
+
+let html="";
+
+data.forEach(test=>{
+
+html += `
+<div class="card">
+
+<h3>${test.title}</h3>
+
+<p>${test.description}</p>
+
+<p>
+<b>Type:</b> ${test.type}
+</p>
+
+<p>
+<b>Price:</b> ₹${test.price}
+</p>
+
+<a class="btn"
+href="test.html?id=${test.testId}">
+Start Test
+</a>
+
+</div>
+`;
+
+});
+
+document.getElementById("tests").innerHTML=html;
+
+})
+.catch(err=>{
+
+document.getElementById("tests").innerHTML=
+"Error Loading Tests";
+
+console.log(err);
+
+});
+
+</script>
+
+</body>
+</html>
+
