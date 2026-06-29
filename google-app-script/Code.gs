@@ -1,14 +1,31 @@
 // Nursing Solution Test Series
-// Google Apps Script backend template
+// Google Apps Script Backend
 
 function doGet(){
-  return ContentService.createTextOutput('NSO API Ready');
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Question_Bank');
+  var data = sheet.getDataRange().getValues();
+  return ContentService.createTextOutput(JSON.stringify(data))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 
 function saveResult(data){
-  // Connect Result Sheet here
+  var sheet = SpreadsheetApp.getActive().getSheetByName('Results');
+  sheet.appendRow([
+    data.name,
+    data.email,
+    data.testName,
+    data.score,
+    data.correct,
+    data.wrong,
+    data.percentage,
+    new Date()
+  ]);
 }
 
 function sendEmailResult(email, result){
-  // Email automation here
+  MailApp.sendEmail({
+    to: email,
+    subject: 'NSO Test Result',
+    body: result
+  });
 }
